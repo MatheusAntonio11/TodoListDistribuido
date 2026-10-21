@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi API TodoList</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Multi API TodoList</h1>
+
+    <!-- ========== AUTENTICAÇÃO ========== -->
+    <section id="auth-view" class="card narrow" hidden>
+      <h2 id="auth-title">Entrar</h2>
+      <p id="auth-msg" class="msg" hidden></p>
+
+      <form id="login-form">
+        <input type="email" name="email" placeholder="E-mail" required>
+        <input type="password" name="senha" placeholder="Senha" required>
+        <button type="submit" class="btn">Entrar</button>
+      </form>
+
+      <form id="register-form" hidden>
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="email" name="email" placeholder="E-mail" required>
+        <input type="password" name="senha" placeholder="Senha" minlength="6" required>
+        <button type="submit" class="btn">Criar conta</button>
+      </form>
+
+      <p class="switch">
+        <a href="#" id="auth-toggle">Não tem conta? Cadastre-se</a>
+      </p>
+    </section>
+
+    <!-- ========== APLICAÇÃO ========== -->
+    <div id="app-view" hidden>
+      <div class="topbar">
+        <span>Olá, <strong id="user-name">usuário</strong></span>
+        <button id="logout-btn" class="btn btn-secondary">Sair</button>
+      </div>
+
+      <section class="card">
+        <h2>Nova Tarefa</h2>
+        <form id="todo-form">
+          <input type="text" id="todo-titulo" placeholder="Título" required maxlength="120">
+          <textarea id="todo-descricao" placeholder="Descrição" rows="2"></textarea>
+          <button type="submit" class="btn">Adicionar</button>
+        </form>
+        <p id="todo-msg" class="msg" hidden></p>
+      </section>
+
+      <section class="card">
+        <h2>Lista de Tarefas</h2>
+        <ul id="todo-list" class="todo-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Estatísticas</h2>
+        <p id="stats-msg" class="msg" hidden></p>
+        <div class="stats">
+          <div class="stat"><span id="stat-total">0</span><small>Total</small></div>
+          <div class="stat ok"><span id="stat-concluidas">0</span><small>Concluídas</small></div>
+          <div class="stat warn"><span id="stat-pendentes">0</span><small>Pendentes</small></div>
+        </div>
+        <div class="progress"><div id="stat-bar"></div></div>
+      </section>
+
+      <section class="card">
+        <div class="row">
+          <h2>Histórico de atividades</h2>
+          <div class="row-actions">
+            <select id="log-filter">
+              <option value="">Todas as ações</option>
+              <option value="TASK_CREATED">Tarefa criada</option>
+              <option value="TASK_COMPLETED">Tarefa concluída</option>
+              <option value="UNAUTHORIZED_ACCESS">Acesso indevido</option>
+              <option value="ERROR">Erro</option>
+            </select>
+            <button id="log-refresh" class="btn btn-secondary" type="button">Atualizar</button>
+          </div>
+        </div>
+        <p id="log-msg" class="msg" hidden></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Data</th><th>Ação</th><th>Detalhe</th></tr></thead>
+            <tbody id="log-body"></tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <button id="log-prev" class="btn btn-secondary" type="button">‹ Anterior</button>
+          <span id="log-page">1 / 1</span>
+          <button id="log-next" class="btn btn-secondary" type="button">Próxima ›</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
