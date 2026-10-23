@@ -2,7 +2,8 @@ import express, { Router } from "express"
 import auth from "./auth/auth_route.js"
 import task from "./task/task__route.js"
 import { verifySession } from "../middleware/verifySession.js";
-
+import todosRoutes from "./todos.js";
+  
 
 const router = express.Router();
 
@@ -25,7 +26,7 @@ router.get('/',(req,res)=>{
 
 router.use("/auth",auth);
 router.use("/todo",verifySession,task);
-
+router.use(todosRoutes);
 
 router.use((req,res)=>{
     res.status(404).json({

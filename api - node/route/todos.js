@@ -4,7 +4,6 @@ import { enviarLog } from "../service/logger.js";
 import { respostaPadrao } from "../route/index.js";
 import { verifySession  } from "../middleware/verifySession.js"; 
 
-// import { criarTarefa } from "../controllers/todo.js"; // seu handler atual de /todo/create
 
 const router = Router();
 
@@ -100,16 +99,9 @@ async function deletarTarefa(req, res, next) {
     }
 }
 
-/* ---------- Rotas ---------- */
 router.get("/todos", verifySession, listarTarefas);
 router.put("/todos/:id", verifySession, atualizarTarefa);
 router.delete("/todos/:id", verifySession, deletarTarefa);
 
-// Criação: reaproveite o handler que você já tem em /todo/create
-// router.post("/todos", verifySession, criarTarefa);
 
 export default router;
-
-// No server.js:
-//   import todosRoutes from "./routes/todos.routes.js";
-//   server.use(todosRoutes);
